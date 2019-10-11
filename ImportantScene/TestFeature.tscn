@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://ImportantScene/PlayerScene/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://ImportantScene/WeaponScene/clip.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ImportantScene/MobScene/Zombie.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ImportantScene/WallScene.tscn" type="PackedScene" id=4]
+[ext_resource path="res://ImportantScene/MobScene/Ranger.tscn" type="PackedScene" id=5]
+
+[node name="Main" type="Node"]
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 980, 373 )
+
+[node name="Clip" parent="." instance=ExtResource( 2 )]
+position = Vector2( 573.54, 219.306 )
+
+[node name="Zombie" parent="." instance=ExtResource( 3 )]
+position = Vector2( 712.577, 419.048 )
+
+[node name="Zombie2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 697.414, 185.777 )
+
+[node name="Zombie3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 959.843, 158.952 )
+
+[node name="Wall" parent="." instance=ExtResource( 4 )]
+position = Vector2( 420.754, 288.553 )
+
+[node name="Wall6" parent="." instance=ExtResource( 4 )]
+position = Vector2( 420.754, 138.738 )
+
+[node name="Wall2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 420.754, 338.553 )
+
+[node name="Wall5" parent="." instance=ExtResource( 4 )]
+position = Vector2( 420.754, 188.738 )
+
+[node name="Wall3" parent="." instance=ExtResource( 4 )]
+position = Vector2( 420.754, 238.553 )
+
+[node name="Wall4" parent="." instance=ExtResource( 4 )]
+position = Vector2( 420.754, 88.7379 )
+
+[node name="Ranger" parent="." instance=ExtResource( 5 )]
+position = Vector2( 921.267, 527.417 )
+
+[node name="Ranger2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1092.9, 519.884 )

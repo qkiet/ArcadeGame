@@ -1,0 +1,28 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://asset/sprite/player_turret.png" type="Texture" id=1]
+[ext_resource path="res://AnimatedSprite.gd" type="Script" id=2]
+[ext_resource path="res://ImportantScene/WeaponScene/Pistol.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ImportantScene/WeaponScene/Shogun.tscn" type="PackedScene" id=4]
+[ext_resource path="res://asset/sound/gunsound.wav" type="AudioStream" id=5]
+[ext_resource path="res://asset/sound/shotgun_sound.wav" type="AudioStream" id=6]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="Player_Turret" type="AnimatedSprite"]
+frames = SubResource( 1 )
+script = ExtResource( 2 )
+Pistol = ExtResource( 3 )
+Shotgun = ExtResource( 4 )
+
+[node name="PistolSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
+
+[node name="ShotgunSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )

@@ -1,0 +1,99 @@
+[gd_scene load_steps=31 format=2]
+
+[ext_resource path="res://ImportantScene/MobScene/Ranger.gd" type="Script" id=1]
+[ext_resource path="res://ImportantScene/MobScene/Weapon/Fireball.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ImportantScene/MobScene/Core.tscn" type="PackedScene" id=3]
+[ext_resource path="res://asset/sprite/mob/zombie.png" type="Texture" id=4]
+[ext_resource path="res://asset/sprite/mob/zombie-attack1.png.png" type="Texture" id=5]
+[ext_resource path="res://asset/sprite/mob/zombie-attack2.png.png" type="Texture" id=6]
+[ext_resource path="res://asset/sprite/mob/zombie-attack3.png.png" type="Texture" id=7]
+[ext_resource path="res://asset/sprite/mob/zombie-attack4.png.png" type="Texture" id=8]
+[ext_resource path="res://asset/sprite/mob/zombie-attack5.png.png" type="Texture" id=9]
+[ext_resource path="res://asset/sprite/mob/zombie_move0.png" type="Texture" id=10]
+[ext_resource path="res://asset/sprite/mob/zombie_move1.png" type="Texture" id=11]
+[ext_resource path="res://asset/sprite/mob/zombie_move2.png" type="Texture" id=12]
+[ext_resource path="res://asset/sprite/mob/zombie_move3.png" type="Texture" id=13]
+[ext_resource path="res://asset/sprite/mob/zombie_move4.png" type="Texture" id=14]
+[ext_resource path="res://asset/sprite/mob/zombie_move5.png" type="Texture" id=15]
+[ext_resource path="res://asset/sprite/mob/zombie_move6.png" type="Texture" id=16]
+[ext_resource path="res://asset/sprite/mob/zombie_move7.png" type="Texture" id=17]
+[ext_resource path="res://asset/sprite/mob/zombie_move8.png" type="Texture" id=18]
+[ext_resource path="res://addons/godot-behavior-tree-plugin/blackboard.gd" type="Script" id=19]
+[ext_resource path="res://addons/godot-behavior-tree-plugin/blackboard_icon.png" type="Texture" id=20]
+[ext_resource path="res://ImportantScene/MobScene/BehaviorTree.gd" type="Script" id=21]
+[ext_resource path="res://addons/godot-behavior-tree-plugin/root_icon.png" type="Texture" id=22]
+[ext_resource path="res://addons/godot-behavior-tree-plugin/selector.gd" type="Script" id=23]
+[ext_resource path="res://addons/godot-behavior-tree-plugin/selector_icon.png" type="Texture" id=24]
+[ext_resource path="res://ImportantScene/MobScene/Wander Sequence.gd" type="Script" id=25]
+[ext_resource path="res://addons/godot-behavior-tree-plugin/sequence_icon.png" type="Texture" id=26]
+[ext_resource path="res://ImportantScene/MobScene/CheckDistance.gd" type="Script" id=27]
+[ext_resource path="res://addons/godot-behavior-tree-plugin/condition_icon.png" type="Texture" id=28]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 13.9439, 35.8192 )
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "attack",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ) ],
+"loop": true,
+"name": "move",
+"speed": 5.0
+} ]
+
+[node name="Ranger" type="KinematicBody2D"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+Projectile = ExtResource( 2 )
+
+[node name="Core" parent="." instance=ExtResource( 3 )]
+speed = 100
+damage = 50
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 2 )
+animation = "move"
+
+[node name="BehaviorBlackboard" type="Node" parent="."]
+script = ExtResource( 19 )
+__meta__ = {
+"_editor_icon": ExtResource( 20 )
+}
+
+[node name="BehaviorTree" type="Node" parent="."]
+script = ExtResource( 21 )
+__meta__ = {
+"_editor_icon": ExtResource( 22 )
+}
+
+[node name="Mode Selection" type="Node" parent="BehaviorTree"]
+script = ExtResource( 23 )
+__meta__ = {
+"_editor_icon": ExtResource( 24 )
+}
+
+[node name="Wander Sequence" type="Node" parent="BehaviorTree/Mode Selection"]
+script = ExtResource( 25 )
+__meta__ = {
+"_editor_icon": ExtResource( 26 )
+}
+
+[node name="CheckDistance" type="Node" parent="BehaviorTree/Mode Selection/Wander Sequence"]
+script = ExtResource( 27 )
+__meta__ = {
+"_editor_icon": ExtResource( 28 )
+}

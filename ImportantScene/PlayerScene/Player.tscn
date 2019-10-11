@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://ImportantScene/Player.gd" type="Script" id=1]
+[ext_resource path="res://ImportantScene/PlayerScene/PlayerFoot.tscn" type="PackedScene" id=2]
+[ext_resource path="res://ImportantScene/PlayerScene/PlayerTurret.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ImportantScene/HUD.tscn" type="PackedScene" id=4]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 14.1691
+height = 8.41271
+
+[node name="Player" type="KinematicBody2D"]
+collision_mask = 10
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 3 )
+shape = SubResource( 1 )
+
+[node name="FootSprite" parent="." instance=ExtResource( 2 )]
+
+[node name="Player_Turret" parent="." instance=ExtResource( 3 )]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+
+[node name="HUD" parent="." instance=ExtResource( 4 )]
